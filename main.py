@@ -38,14 +38,12 @@ def index():
 
 @app.route('/api/jobs')
 def api_jobs():
-    if not os.path.exists(DATA_FILE):
-        jobs = scrape_jobs()
-        with open(DATA_FILE, 'w') as f:
-            json.dump(jobs, f)
-    else:
-        with open(DATA_FILE, 'r') as f:
-            jobs = json.load(f)
-    return jsonify(jobs)
+    # Quick test - return sample data
+    return jsonify([
+        {'title': 'Pilot Job - Sample 1', 'company': 'ABC Aviation', 'location': 'Texas', 'url': '#'},
+        {'title': 'Flight Instructor', 'company': 'XYZ Flight School', 'location': 'Florida', 'url': '#'},
+        {'title': 'Commercial Pilot', 'company': 'Charter Co', 'location': 'California', 'url': '#'}
+    ])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
